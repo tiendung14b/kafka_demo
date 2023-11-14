@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button type="button" onclick="estimate()">Home</button>
+  <script>
+    var arrayName = ['macbook', 'iphone', 'ipad', 'samsung', 'xiaomi', 'huawei', 'oppo',
+      'vivo', 'nokia', 'sony', 'lg', 'asus', 'acer', 'dell', 'hp', 'lenovo', 'msi', 'fujitsu',
+      'toshiba', 'casio', 'canon', 'nikon', 'olympus', 'panasonic', 'philips', 'sanyo', 'sharp',
+      'samsung', 'sony', 'lg', 'toshiba', 'fujitsu', 'acer', 'asus', 'dell', 'hp', 'lenovo', 'msi',
+      'xiaomi', 'huawei', 'oppo', 'vivo', 'nokia', 'casio', 'canon', 'nikon', 'olympus',
+      'panasonic', 'philips', 'sanyo', 'sharp']
+
+    var estimate = async () => {
+      await Promise.all(
+        arrayName.map(async name => {
+          await fetch('http://localhost:8000/add_product', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: name,
+              price: Math.floor(Math.random() * 1000)
+            })
+          })
+        })
+      )
+    }
+  </script>
+</body>
+
+</html>
